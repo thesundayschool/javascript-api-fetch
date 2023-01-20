@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Fetch in JavaScript</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>API Fetch in JavaScript</h1>
+
+    <div id="container"></div>
+
+
+    <script>
+
+        fetch('https://fakestoreapi.com/products')
+            .then(function(response){
+                return response.json()
+            })
+            .then(function(data){
+                console.log(data)
+
+                data.forEach(function(result){
+                    document.querySelector('#container').innerHTML += `
+                        <div class="card">
+                            <div class="product_image">
+                                <img src=" `+ result.image +` " />
+                            </div>
+                            <div class="product_name"> `+  result.title +` </div>
+                            <div class="product_price"> Rs. `+  result.price +` </div>
+                            <div class="product_name"> `+  result.category +` </div>
+                        </div>
+                    `
+                })
+
+            })
+        
+    </script>
+
+
+</body>
+</html>
